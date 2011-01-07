@@ -7,11 +7,16 @@ import spock.lang.Specification
 import com.energizedwork.web.cache.Service
 import com.energizedwork.web.util.NetUtils
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.apache.log4j.BasicConfigurator
 
 
 class VarnishSpec extends Specification {
 
     WebCache webCache
+
+    def setupSpec() {
+        BasicConfigurator.configure()
+    }
 
     def cleanup() {
         webCache?.stop()
@@ -83,10 +88,38 @@ class VarnishSpec extends Specification {
         then: "it uses the vcl file"
             Process varnishadm = webCache.varnishd.manage("vcl.show boot")
             varnishadm.text.contains 'EnergizedWork varnish plugin test configuration'        
+    }
 
-        and: "we can stop it cleanly"
-            webCache.stop()
-            !webCache.running
+    def "copies vcl file to working directory and adds backend if no backend present"() {
+        given: "a vcl file specified in config"
+            def config = new ConfigObject()
+            config.varnish.vcl.file = new File('.', 'test/resources/nobackend.vcl').absolutePath
+            ConfigurationHolder.config = config
+
+        when: "we start it up"
+            webCache = new Varnish()
+            webCache.start()
+
+        then: "it creates a new vcl file in the working directory"
+            webCache.varnishd.configFile.parentFile == webCache.varnishd.workingDirectory
+
+        and: "it uses the original vcl file as a template"
+            Process varnishadm = webCache.varnishd.manage("vcl.show boot")
+            varnishadm.text.contains 'EnergizedWork varnish plugin no-backend test configuration'
+    }
+
+    def "catches vcl compilation failures"() {
+        given: "a vcl file that will create compilation errors"
+            def config = new ConfigObject()
+            config.varnish.vcl.file = new File('.', 'test/resources/invalid.vcl').absolutePath
+            ConfigurationHolder.config = config
+
+        when: "we try to start it up"
+            webCache = new Varnish()
+            webCache.start()
+
+        then: "it throws a compilation exception"
+            thrown(VCLCompilationException)
     }
 
     private int hitUrl(String url, String path) {
