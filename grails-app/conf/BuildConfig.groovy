@@ -1,35 +1,39 @@
+import org.apache.ivy.core.settings.IvySettings
+import org.apache.ivy.plugins.resolver.IvyRepResolver
+
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
+
+IvyRepResolver ewResolver = new IvyRepResolver()
+IvySettings settings = new IvySettings()
+settings.defaultLatestStrategy = settings.getLatestStrategy('latest-time')
+ewResolver.settings = settings
+ewResolver.changingPattern = '^.+-SNAPSHOT$'
+ewResolver.name = 'ew'
+ewResolver.ivyroot = 'http://repo.energizedwork.com/'
+ewResolver.ivypattern = '[organisation]/[module]-ivy-[revision].xml'
+ewResolver.artroot = 'http://repo.energizedwork.com/'
+ewResolver.artpattern = '[organisation]/[module]-[revision](-[classifier]).[ext]'
+ewResolver.checkmodified = true
+ewResolver.latest = 'latest-time'
+
 grails.project.dependency.resolution = {
-    // inherit Grails' default dependencies
-    inherits("global") {
-        // uncomment to disable ehcache
-        // excludes 'ehcache'
-    }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    inherits("global") {}
+    log "warn"
     repositories {
+        resolver ewResolver
         grailsPlugins()
         grailsHome()
         grailsCentral()
-
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
         mavenLocal()
         mavenCentral()
         mavenRepo 'http://repository.codehaus.org'
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
-        
     }
     dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
-        // runtime 'mysql:mysql-connector-java:5.1.5'
        test("org.codehaus.groovy.modules.http-builder:http-builder:0.5.1") {
 			excludes "groovy", "xml-apis"
-	}
+	   }
+       build 'com.energizedwork:release-plugin:0.1-SNAPSHOT'
     }
 }
