@@ -19,9 +19,12 @@ class GrailsHelper {
         ConfigObject config = ConfigurationHolder.config
 
         if(!config) {
-            config = new ConfigSlurper().parse(new File(buildSettings.baseDir, 'grails-app/conf/Config.groovy').toURI().toURL())
-            ConfigurationHelper.initConfig(config)
-            ConfigurationHolder.config = config
+            File configDotGroovy = new File(buildSettings.baseDir, 'grails-app/conf/Config.groovy')
+            if(configDotGroovy.exists()) {
+                config = new ConfigSlurper().parse(configDotGroovy.toURI().toURL())
+                ConfigurationHelper.initConfig(config)
+                ConfigurationHolder.config = config
+            }
         }
 
         return ConfigurationHolder.config

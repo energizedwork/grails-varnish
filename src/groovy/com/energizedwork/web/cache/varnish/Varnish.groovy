@@ -7,6 +7,7 @@ import com.energizedwork.web.util.ThreadUtils
 import com.energizedwork.grails.util.GrailsHelper
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import org.apache.log4j.Logger
+import com.energizedwork.web.cache.varnish.grails.GrailsVCLFileResolver
 
 
 class Varnish implements WebCache {
@@ -16,7 +17,7 @@ class Varnish implements WebCache {
     Service cache, server    
     String protocol = 'http'
 
-    Varnishd varnishd = new Varnishd()
+    Varnishd varnishd = new Varnishd(vclFileResolver:new GrailsVCLFileResolver())
 
     void start() {
         start(new Service(host:GrailsHelper.host, port:GrailsHelper.httpPort, protocol:protocol))

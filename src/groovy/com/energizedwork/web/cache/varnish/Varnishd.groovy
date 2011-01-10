@@ -1,10 +1,10 @@
 package com.energizedwork.web.cache.varnish
 
 import com.energizedwork.web.cache.Service
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import com.energizedwork.web.util.ThreadUtils
-import org.apache.log4j.Logger
 import com.energizedwork.web.util.NetUtils
+import org.apache.log4j.Logger
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 
 class Varnishd {
@@ -22,6 +22,7 @@ class Varnishd {
     int managementPort
     long sleepTime = 500
     long timeoutInMillis = 10000
+    VCLFileResolver vclFileResolver
     File workingDirectory
 
     StringBuffer stdout, stderr
@@ -36,7 +37,8 @@ class Varnishd {
 
         configure()
 
-        log.info "Starting varnishd : $commandLine"
+        println "Starting varnishd : $commandLine"
+        if(log.isInfoEnabled()) { log.info "Starting varnishd : $commandLine" }
 
         varnishd = commandLine.execute()
         (stdout, stderr) = logOutputFromProcess(varnishd)
@@ -75,7 +77,7 @@ backend default {
      .port = "$server.port";
 }
 """
-                File newConfig = File.createTempFile('grails', 'vcl', workingDirectory)
+                File newConfig = File.createTempFile('varnish', 'vcl', workingDirectory)
                 newConfig.text = backendSection
                 newConfig << configFile.text
                 configFile = newConfig
@@ -99,7 +101,7 @@ backend default {
 
     private configure() {
         managementPort = NetUtils.findFreePort()
-        configFile = findConfigFile()
+        if(!configFile) { configFile = vclFileResolver?.VCLFile }
         createWorkingDirectoryIfNoneSpecified()
         addBackendToConfigFileIfNoneAreSpecified()
         commandLine = buildCommandLine(cache, server)        
@@ -107,7 +109,7 @@ backend default {
 
     private createWorkingDirectoryIfNoneSpecified() {
         if(!workingDirectory) {
-            workingDirectory = File.createTempFile('grails', 'varnish')
+            workingDirectory = File.createTempFile('varnish', 'varnishd')
             workingDirectory.delete()
             workingDirectory.mkdirs()
         }
