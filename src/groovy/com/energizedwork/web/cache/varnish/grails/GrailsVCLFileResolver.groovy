@@ -6,7 +6,7 @@ import com.energizedwork.grails.util.GrailsHelper
 
 class GrailsVCLFileResolver implements VCLFileResolver {
 
-    File getVCLFile() {
+    File getVclFile() {
         File result
 
         String configValue = GrailsHelper.config?.varnish?.vcl?.file

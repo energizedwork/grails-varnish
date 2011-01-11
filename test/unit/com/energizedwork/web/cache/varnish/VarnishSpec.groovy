@@ -48,7 +48,7 @@ class VarnishSpec extends Specification {
             !webCache.running
 
         and: "it cleans up the working directory afterwards"
-            !webCache.varnishd.workingDirectory.exists()        
+            !webCache.config.workingDirectory.exists()
     }
 
     def "can determine server from grails project settings"() {
@@ -101,7 +101,7 @@ class VarnishSpec extends Specification {
             webCache.start()
 
         then: "it creates a new vcl file in the working directory"
-            webCache.varnishd.configFile.parentFile == webCache.varnishd.workingDirectory
+            webCache.varnishd.vclFile.parentFile == webCache.varnishd.workingDirectory
 
         and: "it uses the original vcl file as a template"
             Process varnishadm = webCache.varnishd.manage("vcl.show boot")

@@ -7,6 +7,8 @@ interface WebCache {
     void start(Service server)
     void stop()
 
+    Map getConfig()
+
     Service getCache()
     Service getServer()
 

@@ -19,7 +19,7 @@ class GrailsVCLFileResolverSpec extends Specification {
             def resolver = new GrailsVCLFileResolver()
 
         when: 'we retrieve the file from it'
-            File actual = resolver.VCLFile
+            File actual = resolver.vclFile
 
         then: 'we get a null response'
             !actual        
@@ -35,7 +35,7 @@ class GrailsVCLFileResolverSpec extends Specification {
             ConfigurationHolder.config = config
 
         when: 'we ask the resolver for the vcl file'
-            File actual = resolver.VCLFile
+            File actual = resolver.vclFile
 
         then: 'we get a null response'
             !actual
@@ -52,7 +52,7 @@ class GrailsVCLFileResolverSpec extends Specification {
             ConfigurationHolder.config = config
 
         when: 'we ask the resolver for the vcl file'
-            File actual = resolver.VCLFile
+            File actual = resolver.vclFile
 
         then: 'we get the correct vcl file in response'
             actual.absolutePath == vclFile.absolutePath

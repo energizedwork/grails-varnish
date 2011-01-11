@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1b1c74d4-92cf-4250-ae4f-a17007ce0585" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/grails/util/GrailsHelper.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/grails/util/GrailsHelper.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varnish.iml" afterPath="$PROJECT_DIR$/varnish.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy" afterPath="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varnish-grailsPlugins.iml" afterPath="$PROJECT_DIR$/varnish-grailsPlugins.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy" afterPath="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy" />
     </list>
     <ignored path="$USER_HOME_GRIFFON$/" />
     <ignored path="$USER_HOME_GRAILS$/" />
@@ -74,7 +73,7 @@
       <file leaf-file-name="Varnish.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="45" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
+            <state line="41" column="30" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -92,7 +91,7 @@
       <file leaf-file-name="GrailsVCLFileResolverSpec.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="16" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
+            <state line="11" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -107,10 +106,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GrailsVCLFileResolver.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GrailsVCLFileResolver.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="19" selection-start="285" selection-end="285" vertical-scroll-proportion="0.25075987">
+            <state line="6" column="48" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VCLFileResolver.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="19" selection-start="84" selection-end="94" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,7 +127,7 @@
       <file leaf-file-name="WebCache.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="7" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
+            <state line="9" column="17" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,10 +142,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Varnishd.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Varnishd.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="79" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0">
+            <state line="136" column="58" selection-start="3924" selection-end="3924" vertical-scroll-proportion="0.67140603">
               <folding />
             </state>
           </provider>
@@ -146,16 +154,7 @@
       <file leaf-file-name="VarnishSpec.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="30" selection-start="3227" selection-end="3227" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="File.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///usr/lib/jvm/sun-jdk-1.6/src.zip!/java/io/File.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1824" column="23" selection-start="76174" selection-end="76174" vertical-scroll-proportion="0.0">
+            <state line="52" column="0" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -177,20 +176,20 @@
       <list>
         <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/grails/util/ConfigHelper.groovy" />
         <option value="$PROJECT_DIR$/test/resources/test.vcl" />
-        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy" />
         <option value="$PROJECT_DIR$/VarnishGrailsPlugin.groovy" />
         <option value="$PROJECT_DIR$/test/resources/nobackend.vcl" />
         <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLCompilationException.groovy" />
         <option value="$PROJECT_DIR$/test/resources/invalid.vcl" />
-        <option value="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy" />
         <option value="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/VCLFileResolverSpec.groovy" />
         <option value="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy" />
         <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/grails/util/GrailsHelper.groovy" />
         <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy" />
+        <option value="$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy" />
       </list>
     </option>
   </component>
@@ -566,7 +565,7 @@
       <recent name="com.energizedwork.web.cache" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GrailsVCLFileResolverSpec">
+  <component name="RunManager" selected="JUnit.VarnishSpec">
     <configuration default="false" name="VarnishSpec" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="varnish" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -877,7 +876,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="[gus] added release directory and publish url" />
+    <option name="LAST_COMMIT_MESSAGE" value="[gus] pulled out grails-specific file resolver from varnishd wrapper" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -893,6 +892,7 @@
     <MESSAGE value="[gus] catch vcl compile exceptions, use config as template if it does not contain a backend definition" />
     <MESSAGE value="[gus] added release local for local plugin deployment" />
     <MESSAGE value="[gus] added release directory and publish url" />
+    <MESSAGE value="[gus] pulled out grails-specific file resolver from varnishd wrapper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -923,56 +923,14 @@
         <state line="7" column="0" selection-start="264" selection-end="334" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="25" selection-start="56" selection-end="71" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/sun-jdk-1.6/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1824" column="23" selection-start="76174" selection-end="76174" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="30" selection-start="3227" selection-end="3227" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="7" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/Service.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="17" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="79" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="45" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -984,16 +942,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/VarnishSpec.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/WebCache.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="17" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnish.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="30" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/unit/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolverSpec.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="16" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
+        <state line="11" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/VCLFileResolver.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="19" selection-start="84" selection-end="94" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/grails/GrailsVCLFileResolver.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="285" selection-end="285" vertical-scroll-proportion="0.25075987">
+        <state line="6" column="48" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/energizedwork/web/cache/varnish/Varnishd.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="58" selection-start="3924" selection-end="3924" vertical-scroll-proportion="0.67140603">
           <folding />
         </state>
       </provider>

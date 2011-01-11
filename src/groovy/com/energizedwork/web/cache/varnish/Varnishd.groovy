@@ -12,22 +12,28 @@ class Varnishd {
     Logger log = Logger.getLogger(Varnishd)
 
     private Service cache, server
-    private boolean stop
-    private Process varnishd
     private Thread logger
+    private long sleepTime = 500
+    private boolean stop
+    private long timeoutInMillis = 10000
+    private Process varnishd
 
     String command = '/usr/sbin/varnishd'
     String commandLine
-    File configFile
+    File vclFile, templateConfigFile
     int managementPort
-    long sleepTime = 500
-    long timeoutInMillis = 10000
-    VCLFileResolver vclFileResolver
     File workingDirectory
+    
+    VCLFileResolver vclFileResolver
 
     StringBuffer stdout, stderr
 
     boolean isRunning() { varnishd }
+
+    Map getConfig() {
+        [command:command, commandLine:commandLine, vclFile:vclFile, managementPort:managementPort,
+            vclTemplate: templateConfigFile, workingDirectory:workingDirectory, url:cache.url, backendUrl: server.url]
+    }
 
     void start(Service cache, Service server) {
         if(varnishd) { throw new IllegalStateException() }
@@ -37,13 +43,14 @@ class Varnishd {
 
         configure()
 
-        println "Starting varnishd : $commandLine"
-        if(log.isInfoEnabled()) { log.info "Starting varnishd : $commandLine" }
-
         varnishd = commandLine.execute()
         (stdout, stderr) = logOutputFromProcess(varnishd)
 
         waitForSuccessfulStartup() ?: fail()
+
+        if(log.isInfoEnabled()) {
+            log.info toString()
+        }        
     }
 
     void stop() {
@@ -63,10 +70,20 @@ class Varnishd {
         "varnishadm -T$cache.host:$managementPort $command".execute()
     }
 
+    String toString() {
+        def result = new StringBuilder()
+        result << 'Varnish HTTP Accelerator\n'
+        result << "\tstatus: ${running ? 'running': 'stopped'}\n"
+        config.each { key, value ->
+            result << "\t$key: $value\n"            
+        }
+        result
+    }
+
     private addBackendToConfigFileIfNoneAreSpecified() {
-        if(configFile) {
+        if(vclFile) {
             boolean containsBackend
-            configFile.eachLine { String line ->
+            vclFile.eachLine { String line ->
                 if(line =~ /^\s*backend\s.*/) { containsBackend = true }                
             }
 
@@ -79,8 +96,9 @@ backend default {
 """
                 File newConfig = File.createTempFile('varnish', 'vcl', workingDirectory)
                 newConfig.text = backendSection
-                newConfig << configFile.text
-                configFile = newConfig
+                newConfig << vclFile.text
+                templateConfigFile = vclFile
+                vclFile = newConfig
             }
         }
     }
@@ -90,8 +108,8 @@ backend default {
                 "-T $cache.host:$managementPort",
                 "-n ${workingDirectory.absolutePath}"]
 
-        if(configFile) {
-            args << "-f $configFile.absolutePath"
+        if(vclFile) {
+            args << "-f $vclFile.absolutePath"
         } else {
             args << "-b $server.host:$server.port"
         }
@@ -101,8 +119,8 @@ backend default {
 
     private configure() {
         managementPort = NetUtils.findFreePort()
-        if(!configFile) { configFile = vclFileResolver?.VCLFile }
         createWorkingDirectoryIfNoneSpecified()
+        if(!vclFile) { vclFile = vclFileResolver?.vclFile }
         addBackendToConfigFileIfNoneAreSpecified()
         commandLine = buildCommandLine(cache, server)        
     }
@@ -116,20 +134,10 @@ backend default {
     }
 
     private fail() {
-        log.error "Failed to start varnish daemon: $commandLine"
+        log.error "Failed to start varnish daemon:\n $this"
         log.error stdout
         log.error stderr
         stop()
-    }
-
-    private File findConfigFile() {
-        File config
-        String configValue = ConfigurationHolder.config?.varnish?.vcl?.file
-        if(configValue) {
-            File file = new File(configValue)
-            config = file.exists() ? file : null
-        }
-        config
     }
     
     private logOutputFromProcess(Process process) {
