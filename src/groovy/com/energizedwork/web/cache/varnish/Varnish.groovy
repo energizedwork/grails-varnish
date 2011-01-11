@@ -18,6 +18,7 @@ class Varnish implements WebCache {
     String protocol = 'http'
 
     Varnishd varnishd = new Varnishd(vclFileResolver:new GrailsVCLFileResolver())
+    VarnishLog varnishlog
 
     Map getConfig() { varnishd.config }
 
@@ -30,11 +31,16 @@ class Varnish implements WebCache {
         this.cache = new Service(host:InetAddress.localHost.hostName, port:NetUtils.findFreePort(), protocol:protocol)
 
         varnishd.start(cache, server)
+        varnishlog = new VarnishLog()
+        varnishlog.start(varnishd)
 
         running = varnishd.running
     }
 
-    void stop() { varnishd.stop() }
+    void stop() {
+        varnishlog.stop()
+        varnishd.stop()
+    }
 
     boolean isRunning() { varnishd.running }
 
