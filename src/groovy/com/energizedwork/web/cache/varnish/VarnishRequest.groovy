@@ -42,6 +42,8 @@ class VarnishRequestSide {
         def existingValue = map[key]
         if(existingValue) {
             if(existingValue in Map || existingValue in List) {
+                println key
+                println value
                 existingValue << value
             } else {
                 map[key] = [existingValue, value]

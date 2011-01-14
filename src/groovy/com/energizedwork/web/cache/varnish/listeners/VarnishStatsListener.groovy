@@ -9,7 +9,7 @@ class VarnishStatsListener implements VarnishRequestListener {
     def stats = [:]
 
     void request(VarnishRequest request) {
-        String uri = request.client.rxURL
+        String uri = request?.client?.rxURL
         if(stats.containsKey(uri)) {
             stats[uri] = stats[uri]++
         } else {

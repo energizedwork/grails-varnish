@@ -7,10 +7,14 @@ class VarnishLog {
 
     private Process varnishlog
     private Thread logger
-    private boolean stop
+    private boolean stopLogging
+    private boolean requestsFinished
     private long sleepTime = 100
     private ByteArrayOutputStream out
     private VarnishLogParser parser = new VarnishLogParser()
+
+    boolean waitForRequestsToFinish = true
+
 
     void addListener(VarnishRequestListener listener) {
         parser.addListener listener
@@ -28,6 +32,12 @@ class VarnishLog {
                 String logs = out.toString()
 
                 if(logs) {
+                    println logs
+
+                    if(stopLogging && waitForRequestsToFinish) {
+                        requestsFinished = logs.contains('ping')                        
+                    }
+
                     int lastLineBreak = logs.lastIndexOf('\n')
                     if(lastLineBreak >= 0) {
                         parser.parse logs.substring(0, lastLineBreak)
@@ -42,11 +52,18 @@ class VarnishLog {
     }
 
     void stop() {
-        stop = true
-        logger.join()
-        varnishlog.destroy()
-        varnishlog.waitFor()
-        varnishlog = null
+        if(varnishlog) {
+            stopLogging = true
+            logger.join()
+            varnishlog.destroy()
+            varnishlog.waitFor()
+            varnishlog = null
+        }
+    }
+
+    private boolean getStop() {
+        println "stop $stopLogging $waitForRequestsToFinish $requestsFinished"
+        stopLogging && (waitForRequestsToFinish == requestsFinished)
     }
 
 }

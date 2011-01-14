@@ -6,12 +6,19 @@ class VarnishLogParser {
     private Set listeners = []
     private VarnishRequest request
 
+    int urlCount = 0
+
     void addListener(VarnishRequestListener listener) {
         if(listener) { listeners << listener }
     }
 
     void parse(String input) {
         input.eachLine { String line ->
+            if(line.contains('RxURL')) {
+                println line
+                println urlCount++
+            }
+
             def columns = line.split()
             if(columns.length >= 4) {
                 if(columns[1] == 'TxRequest' || columns[1] == 'ReqStart') {
