@@ -38,8 +38,8 @@ class Varnish implements WebCache {
     }
 
     void stop() {
-        varnishlog.stop()
         varnishd.stop()
+        varnishlog?.stop()
     }
 
     boolean isRunning() { varnishd.running }

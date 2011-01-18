@@ -2,12 +2,22 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/hibernate-1.3.5" />
-    <content url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7">
-      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7/src/java" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/hibernate-1.3.5">
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/hibernate-1.3.5/target/classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/hibernate-1.3.5/target/test-classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/hibernate-1.3.5/web-app/plugins" />
     </content>
-    <content url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5">
-      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/src/groovy" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7/src/java" isTestSource="false" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7/target/classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7/target/test-classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/spock-0.5-groovy-1.7/web-app/plugins" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/src/groovy" isTestSource="false" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/target/classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/target/test-classes" />
+      <excludeFolder url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/web-app/plugins" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -28,11 +38,11 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/org.spockframework/spock-core/jars/spock-core-0.5-groovy-1.7.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/org.spockframework/spock-grails-support/jars/spock-grails-support-0.5-groovy-1.7.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/com.energizedwork/release-plugin/jars/release-plugin-0.1-SNAPSHOT.jar!/" />
-          <root url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/lib" />
+          <root url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME_GRAILS$/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.3.5/projects/grails-varnish/plugins/tomcat-1.3.5/lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="grails-1.3.5" level="application" />

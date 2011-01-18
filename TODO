@@ -1,0 +1,8 @@
+DONE verify logging parser is same as manual equivalent
+TODO specify preferred port
+TODO add hooks for customisation
+TODO build config from DSL
+TODO make request object usable
+TODO validate request objects as they are built
+TODO add create date to request objects
+TODO allow user to retrieve last request by uri/regex

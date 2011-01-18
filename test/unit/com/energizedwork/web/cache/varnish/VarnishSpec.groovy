@@ -59,7 +59,6 @@ class VarnishSpec extends Specification {
             webCache.start()
 
         then: "the server settings are determined from the grails config"
-            Thread.sleep 60000
             8080 == webCache.server.port
             'localhost' == webCache.server.host
     }

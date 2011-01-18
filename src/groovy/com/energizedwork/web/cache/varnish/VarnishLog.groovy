@@ -1,20 +1,16 @@
 package com.energizedwork.web.cache.varnish
 
-import com.energizedwork.web.util.ThreadUtils
-
-
 class VarnishLog {
 
-    private Process varnishlog
     private Thread logger
-    private boolean stopLogging
+    private VarnishLogParser parser = new VarnishLogParser()
     private boolean requestsFinished
     private long sleepTime = 100
-    private ByteArrayOutputStream out
-    private VarnishLogParser parser = new VarnishLogParser()
+    private boolean stopLogging
+    private Process varnishlog
 
+    String stopText = 'EOF on CLI connection'
     boolean waitForRequestsToFinish = true
-
 
     void addListener(VarnishRequestListener listener) {
         parser.addListener listener
@@ -23,26 +19,32 @@ class VarnishLog {
     void start(Varnishd varnish) {
         String commandLine = "varnishlog -o -n $varnish.workingDirectory"
         varnishlog = commandLine.execute()
-        out = new ByteArrayOutputStream()
 
         logger = Thread.start {
+            def out = new StringBuilder()
             while(!stop) {
-                ThreadUtils.stfu varnishlog.consumeProcessOutputStream(out)
 
-                String logs = out.toString()
+                int available
+                InputStream input = varnishlog.inputStream
+                while ((available = input.available()) > 0) {
+                    available.times { out << (char)input.read() }
+                }
 
-                if(logs) {
-                    println logs
-
+                if(out) {
                     if(stopLogging && waitForRequestsToFinish) {
-                        requestsFinished = logs.contains('ping')                        
+                        requestsFinished = (out.indexOf(stopText) != -1)
                     }
 
-                    int lastLineBreak = logs.lastIndexOf('\n')
+                    int lastLineBreak = out.lastIndexOf('\n')
                     if(lastLineBreak >= 0) {
-                        parser.parse logs.substring(0, lastLineBreak)
-                        out.reset()
-                        out.write logs.substring(lastLineBreak+1).bytes
+                        parser.parse out.substring(0, lastLineBreak)
+                        String incompleteLine = out.substring(lastLineBreak+1)
+                        out.length = 0
+                        out << incompleteLine
+                    }
+
+                    if(stop && out) {
+                        parser.parse out
                     }
                 }
 
@@ -62,7 +64,6 @@ class VarnishLog {
     }
 
     private boolean getStop() {
-        println "stop $stopLogging $waitForRequestsToFinish $requestsFinished"
         stopLogging && (waitForRequestsToFinish == requestsFinished)
     }
 

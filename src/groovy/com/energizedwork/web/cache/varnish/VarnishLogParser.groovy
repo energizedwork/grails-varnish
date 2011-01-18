@@ -14,29 +14,33 @@ class VarnishLogParser {
 
     void parse(String input) {
         input.eachLine { String line ->
-            if(line.contains('RxURL')) {
-                println line
-                println urlCount++
-            }
-
             def columns = line.split()
             if(columns.length >= 4) {
-                if(columns[1] == 'TxRequest' || columns[1] == 'ReqStart') {
+                if(isRequestStart(columns)) {
                     request = request ?: new VarnishRequest()
-                } else if(columns[1] == 'ReqEnd') {
+                } else if(isRequestEnd(columns)) {
                     listeners*.request request
                     request = null
                 } else {
                     if(request) {
-                        def target = request.client
-                        if(columns[2] == 'b' || columns[2] == '-') {
-                            target = request.backend
-                        }
-                        target.putAt(columns[1], columns[3..-1].join(' '))
+                        def side = selectSide(request, columns)
+                        side[columns[1]] = columns[3..-1].join(' ')
                     }
                 }
             }
         }
+    }
+
+    boolean isRequestStart(String[] columns) {
+        columns[1] == 'BackendOpen' || columns[1] == 'ReqStart'
+    }
+
+    boolean isRequestEnd(String[] columns) {
+        columns[1] == 'ReqEnd'
+    }
+
+    VarnishRequestSide selectSide(VarnishRequest request, String[] columns) {
+        (columns[2] == 'b' || columns[2] == '-') ? request.backend : request.client
     }
 
 }
