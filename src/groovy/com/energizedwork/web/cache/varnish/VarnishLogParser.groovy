@@ -21,18 +21,17 @@ class VarnishLogParser {
                 } else if(isRequestEnd(columns)) {
                     listeners*.request request
                     request = null
-                } else {
-                    if(request) {
-                        def side = selectSide(request, columns)
-                        side[columns[1]] = columns[3..-1].join(' ')
-                    }
+                }
+                if(request) {
+                    def side = selectSide(request, columns)
+                    side[columns[1]] = columns[3..-1].join(' ')
                 }
             }
         }
     }
 
     boolean isRequestStart(String[] columns) {
-        columns[1] == 'BackendOpen' || columns[1] == 'ReqStart'
+        columns[1] in ['TxRequest', 'ReqStart']
     }
 
     boolean isRequestEnd(String[] columns) {

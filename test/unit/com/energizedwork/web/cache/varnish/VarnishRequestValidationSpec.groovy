@@ -84,7 +84,7 @@ class VarnishRequestValidationSpec extends Specification {
             request.client['ReqStart'] = "192.168.1.219 52904 1771187280"
 
         and: "we add the X-Varnish header"
-            request.client['X-Varnish'] = "1771187280 1771187184"
+            request.client['TxHeader'] = "X-Varnish: 1771187280 1771187184"
 
         and: "we finish the client request"
             request.client['ReqEnd'] = "1771187280 1294759492.230493784 1294759492.230621099 1.295840502 0.000055552 0.000071764"

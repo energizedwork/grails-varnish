@@ -18,6 +18,7 @@ class VarnishRequestSide {
             if(client) { assert data['xid'] == fields.split()[0] }
         },
         'X-Varnish': { String xid ->
+            if(xid.contains(' ')) { xid = xid.split()[0] }
             if(backend) { data['xid'] = xid }
             else { assert data['xid'] == xid }
         }
