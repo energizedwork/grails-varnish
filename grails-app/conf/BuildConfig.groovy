@@ -38,5 +38,6 @@ grails.project.dependency.resolution = {
 			excludes "groovy", "xml-apis"
 	   }
        build 'com.energizedwork:release-plugin:0.1-SNAPSHOT'
+       compile 'com.energizedwork:varnish:0.1-SNAPSHOT'
     }
 }
